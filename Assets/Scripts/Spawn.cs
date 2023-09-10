@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class Spawn : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemy;
+    [SerializeField] private Rigidbody _prefab;
     [SerializeField] private int _countEnemy;
 
     private Transform[] _spawnPoints;
-    private float _spawnTime = 2f;
+    private float _delay = 2f;
 
     private void Start()
     {
@@ -23,11 +23,13 @@ public class Spawn : MonoBehaviour
 
     private IEnumerator SpawnEnemy()
     {
+        WaitForSecondsRealtime delay = new WaitForSecondsRealtime(_delay);
+
         for( int i = 0; i  < _countEnemy; i++)
         {
-            Instantiate(_enemy, _spawnPoints[Random.Range(0, _spawnPoints.Length)]);
+            Instantiate(_prefab.gameObject, _spawnPoints[Random.Range(0, _spawnPoints.Length)]);
 
-            yield return new WaitForSecondsRealtime(_spawnTime);
+            yield return delay;
         }
     }
 }
