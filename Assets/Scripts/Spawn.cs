@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class RandomSpawn : MonoBehaviour
+public class Spawn : MonoBehaviour
 {
     [SerializeField] private GameObject _enemy;
     [SerializeField] private int _countEnemy;
@@ -21,14 +21,11 @@ public class RandomSpawn : MonoBehaviour
         StartCoroutine(SpawnEnemy());
     }
 
-    IEnumerator SpawnEnemy()
+    private IEnumerator SpawnEnemy()
     {
-        int countEnemy = 0;
-
-        while (countEnemy < _countEnemy)
+        for( int i = 0; i  < _countEnemy; i++)
         {
             Instantiate(_enemy, _spawnPoints[Random.Range(0, _spawnPoints.Length)]);
-            countEnemy++;
 
             yield return new WaitForSecondsRealtime(_spawnTime);
         }
