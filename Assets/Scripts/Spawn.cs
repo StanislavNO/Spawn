@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Spawn : MonoBehaviour
 {
-    [SerializeField] private Transform _prefab;
+    [SerializeField] private Enemy _prefab;
     [SerializeField] private int _countEnemy;
 
     private Transform[] _spawnPoints;
