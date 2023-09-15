@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Spawn : MonoBehaviour
+public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private Enemy _prefab;
     [SerializeField] private int _countEnemy;
@@ -25,9 +25,11 @@ public class Spawn : MonoBehaviour
     {
         WaitForSecondsRealtime delay = new WaitForSecondsRealtime(_delay);
 
-        for( int i = 0; i  < _countEnemy; i++)
+        for (int i = 0; i < _countEnemy; i++)
         {
-            Instantiate(_prefab.gameObject, _spawnPoints[Random.Range(0, _spawnPoints.Length)]);
+            _spawnPoints[Random.Range(0, _spawnPoints.Length)].
+                GetComponent<Spawner>().
+                CreateEnemy(_prefab);
 
             yield return delay;
         }
