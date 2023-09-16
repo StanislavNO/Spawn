@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+public class SpawnActivator : MonoBehaviour
 {
     [SerializeField] private Enemy _prefab;
     [SerializeField] private int _countEnemy;
